@@ -4,6 +4,11 @@ namespace Modules\Social\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Livewire\Livewire;
+
+
+//use Modules\Social\Http\Controllers\SocialiteManager;
+//use Modules\Social\Http\Contracts\Factory as SocialiteFactory;
 
 class SocialServiceProvider extends ServiceProvider
 {
@@ -38,6 +43,16 @@ class SocialServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        /* 라이브와이어 컴포넌트 등록 */
+        Livewire::component('WireSocial-Login', \Modules\Social\Http\Livewire\WireSocialLogin::class);
+
+        // SocialiteManager 랩퍼
+        /*
+        $this->app->singleton(SocialiteFactory::class, function ($app) {
+            return new SocialiteManager($app);
+        });
+        */
     }
 
     /**
